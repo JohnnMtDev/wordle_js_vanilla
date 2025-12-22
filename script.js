@@ -9,9 +9,25 @@ fetch(url)
             const rand = Math.floor(Math.random() * 10)
            // console.log(rand)
             //word of object in api
-            word = data[rand].word
+            let word = data[rand].word
 
-            let divCard = document.querySelector('#card')
+            shuffleString(word)
+            }
+
+
+    )
+
+    .catch(error => console.log(error))
+
+
+     game =  {
+        unordered_word: data.word ,
+        word:data.word,
+        gameState: true 
+    }
+
+
+     let divCard = document.querySelector('#card')
             let randomword = document.querySelector('#leters')
            
           
@@ -32,25 +48,7 @@ fetch(url)
             function separateWord (w){
                 
                 
-                for ( j = 0 ; j<w.length ; j++){
+                for (let j = 0 ; j<w.length ; j++){
                     let letter = w[j]
                     
-                }
-
-            // validate input word    
-            function validateWord(text){
-                (text === random) ? tue : false
-            }
-                
-
-            }
-
-
-
-
-
-     
-       
-    })
-
-    .catch(error => console.log(error))
+                }}
