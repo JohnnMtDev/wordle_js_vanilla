@@ -10,6 +10,9 @@ fetch(url)
            // console.log(rand)
             //word of object in api
             word = data[rand].word
+
+            let divCard = document.querySelector('#card')
+            let randomword = document.querySelector('#leters')
            
           
             //funcion for unorderer letters of word
@@ -27,17 +30,21 @@ fetch(url)
 
             // letters
             function separateWord (w){
+                
+                
                 for ( j = 0 ; j<w.length ; j++){
                     let letter = w[j]
-                    console.log(letter)
-                    p = document.createElement('p')
-                    p.textContent=letter
-                    document.body.appendChild(p)
+                    
                 }
+
+            // validate input word    
+            function validateWord(text){
+                (text === random) ? tue : false
+            }
                 
+
             }
 
-             separateWord(word)
 
 
 
