@@ -15,13 +15,18 @@
 }
 
 /* =========================
+   Google font - Robotto
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* =========================
    Reset & Base
 ========================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family:  "Roboto", sans-serif;
 }
 
 body {
@@ -47,4 +52,10 @@ body {
     width: 320px;
     text-align: center;
     box-shadow: 0 20px 40px
+}
+.letters{
+    display: flex;   
+}
+.letter{
+    margin: auto;
 }
