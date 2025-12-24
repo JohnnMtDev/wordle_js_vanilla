@@ -1,0 +1,50 @@
+/* =========================
+   CSS Variables (Theme)
+========================= */
+:root {
+    --bg-color: #0f0f13;
+    --card-bg: #1a1a20;
+    --primary: #7c3aed;
+    --primary-hover: #6d28d9;
+    --text-main: #ffffff;
+    --text-muted: #9ca3af;
+    --success: #22c55e;
+    --error: #ef4444;
+    --warning: #f59e0b;
+    --letter-bg: #2a2a35;
+}
+
+/* =========================
+   Reset & Base
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #1f1f29, var(--bg-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+}
+
+/* =========================
+   Layout
+========================= */
+.container {
+    padding: 1rem;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 20px 40px
+}

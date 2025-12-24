@@ -1,54 +1,113 @@
+/**
+ * Wordle-like game
+ * ----------------
+ * - Fetches random words from an API
+ * - Shuffles the selected word
+ * - Renders shuffled letters as individual cards
+ * - Allows the user to guess the word with limited attempts
+ */
 
-let url = 'https://random-words-api.kushcreates.com/api?language=en&length=8&words=10'
+const API_URL =
+    'https://random-words-api.kushcreates.com/api?language=en&length=8&words=10'
 
-fetch(url)
+/**
+ * Game state
+ */
+const game = {
+    randomWord: '',
+    shuffledWord: '',
+    lifes: 5,
+    gameState: true
+}
+
+/**
+ * DOM elements
+ */
+const lettersContainer = document.querySelector('#letters')
+const guessInput = document.querySelector('#guess')
+const checkButton = document.querySelector('#check')
+const resultDiv = document.querySelector('#result')
+const triesDiv = document.querySelector('#tries')
+
+checkButton.addEventListener('click', checkWord)
+
+/**
+ * Initialize game
+ */
+fetch(API_URL)
     .then(response => response.json())
     .then(data => {
-     
-            // random key for word in array
-            const rand = Math.floor(Math.random() * 10)
-           // console.log(rand)
-            //word of object in api
-            let word = data[rand].word
+        const randomIndex = Math.floor(Math.random() * data.length)
 
-            shuffleString(word)
-            }
+        game.randomWord = data[randomIndex].word
+        game.shuffledWord = shuffleString(game.randomWord)
 
+        renderLetters(game.shuffledWord)
+        updateTries()
+    })
+    .catch(error => console.error('API Error:', error))
 
-    )
+/**
+ * Shuffle letters of a string (Fisher–Yates)
+ */
+function shuffleString(word) {
+    const letters = word.split('')
 
-    .catch(error => console.log(error))
-
-
-     game =  {
-        unordered_word: data.word ,
-        word:data.word,
-        gameState: true 
+    for (let i = letters.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[letters[i], letters[j]] = [letters[j], letters[i]]
     }
 
+    return letters.join('')
+}
 
-     let divCard = document.querySelector('#card')
-            let randomword = document.querySelector('#leters')
-           
-          
-            //funcion for unorderer letters of word
-            function shuffleString(str) {
-                const arr = str.split('');
+/**
+ * Render shuffled letters as individual cards
+ */
+function renderLetters(word) {
+    lettersContainer.innerHTML = ''
 
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
+    for (const letter of word) {
+        const letterDiv = document.createElement('div')
+        letterDiv.classList.add('letter')
+        letterDiv.textContent = letter.toUpperCase()
+        lettersContainer.appendChild(letterDiv)
+    }
+}
 
-                return arr.join('');
-                }
+/**
+ * Check user guess
+ */
+function checkWord() {
+    if (!game.gameState) return
 
+    const userGuess = guessInput.value.trim().toLowerCase()
+    const correctWord = game.randomWord.toLowerCase()
 
-            // letters
-            function separateWord (w){
-                
-                
-                for (let j = 0 ; j<w.length ; j++){
-                    let letter = w[j]
-                    
-                }}
+    if (userGuess === correctWord) {
+        resultDiv.textContent = '✅ Correct!'
+        resultDiv.className = 'result win'
+        game.gameState = false
+    } else {
+        game.lifes--
+
+        if (game.lifes === 0) {
+            resultDiv.textContent = `❌ Game Over. The word was "${game.randomWord}"`
+            resultDiv.className = 'result lose'
+            game.gameState = false
+        } else {
+            resultDiv.textContent = '❌ Wrong word. Try again!'
+            resultDiv.className = 'result try'
+        }
+    }
+
+    guessInput.value = ''
+    updateTries()
+}
+
+/**
+ * Update remaining tries text
+ */
+function updateTries() {
+    triesDiv.textContent = `Remaining attempts: ${game.lifes}`
+}

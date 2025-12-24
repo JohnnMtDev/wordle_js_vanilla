@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wordle</title>
-    <link rel="stylesheet" href="/styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordle Game</title>
+    <link rel="stylesheet" href="./styles.css" />
     <script defer src="./script.js"></script>
-    
 </head>
 
 <body>
-    <div id="card">
-        <h1>Ordena la letras</h1>
-        <h2 id="word"></h2>
+    <main class="container">
+        <section class="card">
+            <h1 class="title">Wordle</h1>
+            <p class="subtitle">Reorder the letters to form the word</p>
 
-        <div id="letters"></div>
+            <div id="letters" class="letters"></div>
 
-        <input type="text" id="guess" />
+            <input
+                type="text"
+                id="guess"
+                class="guess-input"
+                placeholder="Type the word..."
+                autocomplete="off"
+            />
 
-        <button id="check">Check</button>
+            <div id="result" class="result"></div>
 
-  <p id="tries"></p>
-</div>
+            <button id="check" class="btn">Check</button>
+
+            <p id="tries" class="tries"></p>
+        </section>
+    </main>
 </body>
 </html>
