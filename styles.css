@@ -26,7 +26,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:  "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -51,11 +51,66 @@ body {
     padding: 2rem;
     width: 320px;
     text-align: center;
-    box-shadow: 0 20px 40px
+    box-shadow: 0 20px 40px;
+    
+    
 }
-.letters{
-    display: flex;   
+.title{
+    margin-bottom: 1em ;
 }
-.letter{
-    margin: auto;
+
+.letters {
+    display: flex;
+    padding: 1em;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
 }
+
+.letter {
+     background-color: var(--primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+    color: white;
+}
+
+#guess {
+    border: 2px solid var(--text-main);
+    padding: 1em;
+    border-radius: 10px;
+    background-color: var(--card-bg);
+    font-size: small;
+    font-weight: bold;
+    text-align: center;
+}
+#result{
+    padding-top: 1em;
+}
+
+#check {
+  margin: 1em ;
+  padding: 1em;
+  border: none;
+  outline: none;
+  background-color: var(--primary);
+  color: var(--text-main);
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+}
+
+#check:hover {
+  transform: translateY(-1em);
+}
+#tries{
+    font-weight: bolder;
+}
+
